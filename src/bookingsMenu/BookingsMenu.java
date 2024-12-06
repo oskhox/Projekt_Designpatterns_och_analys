@@ -16,10 +16,28 @@ public class BookingsMenu {
 
     BookingsMenu(Scanner scan) {
         this.scan = scan;
-        loadAvailableWeeks();
     }
 
     private void printMenu() {
+        String userInput;
+        Optional<Integer> parsedUserInput;
+        String instruction = String.format("Sommar%nVinter%nSkriv in val: ");
+
+        // Denna del är bara en mock up
+        while (true) {
+            System.out.println(instruction);
+            userInput = scan.nextLine().trim();
+            if (userInput.equalsIgnoreCase("Vinter")) {
+                loadAvailableWeeks(false);
+                break;
+            } else if (userInput.equalsIgnoreCase("Sommar")) {
+                loadAvailableWeeks(true);
+                break;
+            } else {
+                System.err.println("Vad du skrev in motsvarar varken 'Vinter' eller 'Sommar'");
+            }
+        }
+
         if (!availableWeeks.isEmpty()) {
             makeBooking();
         } else {
@@ -45,7 +63,7 @@ public class BookingsMenu {
 
             parsedUserInput = util.parseIfAble(userInput);
             if (parsedUserInput.isPresent()) {
-                chosenWeek = parsedUserInput.get() - 1; // Menu option is one larger than index
+                chosenWeek = parsedUserInput.get() - 1; // Menyalternativen är 1 större än listindex
                 if (validWeek(chosenWeek)) {
                     System.out.printf("%s%s är tillagd i din bokning.%s%n",
                             green, availableWeeks.get(chosenWeek), resetColor);
@@ -116,7 +134,7 @@ public class BookingsMenu {
         System.out.println(yellow + instruction + resetColor);
     }
 
-    private void loadAvailableWeeks() {
+    private void loadAvailableWeeks(boolean summerWeeks) {
         String filePath;
         filePath = "src/bookingsMenu/availableWeeks.properties";
 
@@ -133,7 +151,11 @@ public class BookingsMenu {
         String[] parts;
         try (FileInputStream inputStream = new FileInputStream(filePath)) {
             properties.load(inputStream);
-            allWeeks = properties.getProperty("available_weeks");
+            if (summerWeeks) {
+                allWeeks = properties.getProperty("available_summer_weeks");
+            } else {
+                allWeeks = properties.getProperty("available_winter_weeks");
+            }
             if (allWeeks != null) {
                 parts = allWeeks.split(",");
                 for (String week : parts) {
