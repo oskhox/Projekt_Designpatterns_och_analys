@@ -21,7 +21,7 @@ public class BookingsMenu {
     private void printMenu() {
         String userInput;
         Optional<Integer> parsedUserInput;
-        String instruction = String.format("Sommar%nVinter%nSkriv in val: ");
+        String instruction = String.format("Sommar%nVinter%nSkriv in 'Sommar' eller 'Vinter': ");
 
         // Denna del är bara en mock up
         while (true) {
@@ -91,7 +91,7 @@ public class BookingsMenu {
 
     private void printBookingConfirmation() {
         if (booking.getState() == BookingState.COMPLETED) {
-            System.out.println("Du har bokat:");
+            System.out.println(yellow + "Du har bokat:" + resetColor);
             booking.showBooking();
         } else if (booking.getState() == BookingState.CANCELED) {
             System.out.println("Bokning avbruten.");
