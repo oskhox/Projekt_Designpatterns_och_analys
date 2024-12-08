@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class LocalActivities implements MenuScreen {
 
+    //1. gör konstruktor med scannern i
     //använd scannern från Main
     Scanner myScan;
 
@@ -14,17 +15,19 @@ public class LocalActivities implements MenuScreen {
     String winterActivities = """
             De här vinteraktiviteterna rekommenderar vi:
             1. Järvsöbacken, Rödmyravägen 17, 827 50 Järvsö (300 meter bort).
-            2. Järvsö skidstation (längd), Alpstigen 6, 827 51 Järvsö (550 meter bort).
+            2. Skidstationen (längd), Alpstigen 6, 827 51 Järvsö (550 meter bort).
             3. Järvsö skiduthyrning, Rödmyravägen 22, 827 50 Järvsö (400 meter bort).
             4. Järvsöbaden Spa, Turistvägen 4, 827 51 Järvsö (900 meter bort).
             """;
     String summerActivities = """
+            De här sommaraktiviteterna rekommenderar vi:
             1. Trappstigens vandringsled, Bergvägen 24, 827 60 Järvsö (2 km bort).
             2. Järvsö Fisketurer, Turistvägen 70, 827 54 Järvsö (1,5 km bort).
             3. Järvsö Mountainbike-park, Vallmovägen 20, 827 51 Järvsö (800 meter bort).
             4. Järvsö Kajak, Strandvägen 23, 827 51 Järvsö (900 meter bort).
             """;
 
+    //anropas från main
     @Override
     public void printMenu() {
 
@@ -50,7 +53,7 @@ public class LocalActivities implements MenuScreen {
 
     //Välj alla aktiviteter eller vinter- eller sommaraktiviteter
 
-    //switch case som visar alla aktiviteter, vinter- eller sommaraktiviteter samt anrop till exit-metoden om skriver exit via scanner
+    //switch case som visar året runt-aktiviteter, vinter- eller sommaraktiviteter samt anrop till exit-metoden om skriver exit via scanner
 
     //interfacad exit-metod som clearar terminalfönstret och tar tillbaks en till huvudmenyn (anropar main)
 
