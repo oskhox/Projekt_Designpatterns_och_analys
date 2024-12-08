@@ -13,16 +13,17 @@ public class Main {
     public Main(){
 
         try (Scanner sc = new Scanner(System.in)) {
-            System.out.println("Storage: 1, Cottage: 2, Contact info: 3, Activities: 4, Booking: 5");
+            //System.out.println("Storage: 1, Cottage: 2, Contact info: 3, Activities: 4, Booking: 5");
             String line;
             while ((line = sc.nextLine()) != null) {
                 try {
                     state = Integer.parseInt(line);
                 }catch (NumberFormatException e){
+                    System.out.println("Please enter a valid number");
                     continue;
                 }
                 switch (state) {
-                    case STARSCREEN -> {System.out.println("Storage: 1, Cottage: 2, Contact info: 3, Activities: 4, Booking: 5");}
+                    case STARSCREEN -> {System.out.println("Storage[1], Cottage[2], Contact info[3], Activities[4], Booking[5]");}
                     case STORAGESCREEN -> {System.out.println("Storage: 1");}
                     case COTTAGESCREEN -> {System.out.println("Cottage: 2");}
                     case CONTACTSCREEN -> {System.out.println("Contact info: 3");}
