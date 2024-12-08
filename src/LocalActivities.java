@@ -82,8 +82,8 @@ public class LocalActivities implements MenuScreen {
             }
 
         } catch (NumberFormatException e) {
-            System.out.println("Felaktig inmatning --> Ange ett giltig nummer");
-
+            e.printStackTrace();
+            System.out.println("Exception vid inmatning av nummer.");
         }
         return userChoiceInput;
     }
