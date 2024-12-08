@@ -93,17 +93,17 @@ public class LocalActivities implements MenuScreen {
         System.out.println("Skriv 'Exit' eller 'E' för att återgå till huvudmenyn:");
         String exitInput = scanner.nextLine();
         if (exitInput.equalsIgnoreCase("Exit") || exitInput.equalsIgnoreCase("E")) {
-            System.out.println("Här ska terminalen clearas och huvudmenyn skrivas ut igen.");
-            System.exit(0); //Ta bort
-            //TODO: Cleara terminalen
-            //TODO: Skriv ut huvudmenyn igen, anropa Main
+            exitClass();
         }
     }
 
-    //TODO: Behövs inte alls om vi lyckas rensa terminalen?
     @Override
     public void exitClass() {
+        //TODO: Cleara terminalen
+        //TODO: Skriv ut huvudmenyn igen, anropa Main
         //System.out.print("\u001B[H\u001B[2J");
+        System.out.println("Här ska terminalen clearas och huvudmenyn skrivas ut igen.");
+        System.exit(0); //Ta bort
     }
 
     //TODO: Ta bort efter merge, detta är bara mock
