@@ -1,41 +1,64 @@
+import bookingsMenu.*;
+
 import java.util.Scanner;
 
 public class Main {
-    private final int STARSCREEN = 0;
-    private final int STORAGESCREEN = 1;
-    private final int COTTAGESCREEN = 2;
-    private final int CONTACTSCREEN = 3;
-    private final int ACTIVITYSCREEN = 4;
-    private final int BOOKINGSCREEN = 5;
-    private int state = STARSCREEN;
 
+    MainMenuStates state = MainMenuStates.START_SCREEN;
 
-    public Main(){
+    public Main() {
 
-        try (Scanner sc = new Scanner(System.in)) {
-            //System.out.println("Storage: 1, Cottage: 2, Contact info: 3, Activities: 4, Booking: 5");
-            String line;
-            while ((line = sc.nextLine()) != null) {
-                try {
-                    state = Integer.parseInt(line);
-                }catch (NumberFormatException e){
-                    System.out.println("Please enter a valid number");
-                    continue;
-                }
-                switch (state) {
-                    case STARSCREEN -> {System.out.println("Storage[1], Cottage[2], Contact info[3], Activities[4], Booking[5]");}
-                    case STORAGESCREEN -> {System.out.println("Storage: 1");}
-                    case COTTAGESCREEN -> {System.out.println("Cottage: 2");}
-                    case CONTACTSCREEN -> {System.out.println("Contact info: 3");}
-                    case ACTIVITYSCREEN -> {System.out.println("Activities: 4");}
-                    case BOOKINGSCREEN -> {System.out.println("Booking: 5");}
+        try (Scanner scan = new Scanner(System.in)) {
+
+            BookingsMenu b = new BookingsMenu(scan);
+            //printMainMenu();
+
+            String line = null;
+            while (((line != null)||state.equals(MainMenuStates.START_SCREEN))) {
+
+                    switch (state) {
+                        case START_SCREEN -> {
+                            printMainMenu();
+                            while (state.equals(MainMenuStates.START_SCREEN)) {
+                                line = scan.nextLine();
+                                for (MainMenuStates chosenState : MainMenuStates.values()) {
+                                    if (chosenState.stateValue.equals(line.trim())) {
+                                        state = chosenState;
+                                    }
+                                }
+                            }
                         }
+                        case STORAGE_SCREEN -> {
+                            System.out.println("Storage: 1");
+                            state = MainMenuStates.START_SCREEN;
+                        }
+                        case COTTAGE_SCREEN -> {
+                            System.out.println("Cottage: 2");
+                            state = MainMenuStates.START_SCREEN;
+                        }
+                        case CONTACT_SCREEN -> {
+                            System.out.println("Contact info: 3");
+                            state = MainMenuStates.START_SCREEN;
+                        }
+                        case ACTIVITY_SCREEN -> {
+                            System.out.println("Activities: 4");
+                            state = MainMenuStates.START_SCREEN;
+                        }
+                        case BOOKING_SCREEN -> {
+                            b.printMenu();
+                            state = MainMenuStates.START_SCREEN;
+                        }
+                    }
                 }
-
-            }
         }
+    }
 
-    public static void main(String[] args) {
+    public void printMainMenu(){
+        System.out.println("\nSkriv in numret bredvid menynamnet för att välja meny:" +
+                            "\nStorage[1], Cottage[2], Contact info[3], Activities[4], Booking[5]");
+    }
+
+    public static void main (String[]args){
         new Main();
     }
 }
