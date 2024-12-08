@@ -78,18 +78,14 @@ public class ActivityStorage implements MenuScreen {
         int userChoiceInput;
 
         try {
-            userChoiceInput = Integer.parseInt(scanner.nextLine());
-
+            userChoiceInput = Integer.parseInt(scanner.nextLine().trim());
 
             if (userChoiceInput < 1 || userChoiceInput > 4) {
                 System.out.println("Felaktig inmatning --> Ange ett giltig nummer");
-                return -1;
             }
-
         } catch (NumberFormatException e) {
             System.out.println("Felaktig inmatning --> Ange ett giltig nummer");
             return -1;
-
         }
         return userChoiceInput;
     }
