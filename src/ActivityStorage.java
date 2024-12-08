@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class ActivityStorage {
+public class ActivityStorage implements MenuScreen {
 
     private final Scanner scanner;
 
@@ -27,7 +27,7 @@ public class ActivityStorage {
     }
 
 
-    // @Override
+    @Override
     public void printMenu() {
 
         String menu = String.format(
@@ -73,6 +73,8 @@ public class ActivityStorage {
     }
 
     public int getUserInput() {
+
+       // while (true) { loop för korrekt avslut?
         int userChoiceInput;
 
         try {
@@ -83,12 +85,13 @@ public class ActivityStorage {
                 System.out.println("Felaktig inmatning --> Ange ett giltig nummer");
                 return -1;
             }
-            return userChoiceInput;
+
         } catch (NumberFormatException e) {
             System.out.println("Felaktig inmatning --> Ange ett giltig nummer");
             return -1;
 
         }
+        return userChoiceInput;
     }
 
     public void exitInstructions() {
