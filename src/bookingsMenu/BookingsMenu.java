@@ -12,6 +12,7 @@ public class BookingsMenu {
     private final List<String> availableWinterWeeks = new ArrayList<>();
     private final List<String> bookedWeeks = new ArrayList<>();
     private final String yellow = "\u001B[33m";
+    String red = "\u001B[31m";
     private final String resetColor = "\u001B[0m";
     private final Booking booking = new Booking();
     private BookingType chosenType;
@@ -66,23 +67,23 @@ public class BookingsMenu {
         Optional<Integer> parsedUserInput;
         int chosenWeek;
 
+        Utility.clearScreen();
         while (availableWeeks(typeOfBooking)) {
             printInstruction();
             printAvailableWeeks(typeOfBooking);
             if (booking.getState() == BookingState.PENDING) {
-                System.out.print("Skriv in val, 'Färdig' eller 'Avsluta': ");
+                System.out.print("Skriv in val, 'Klar' eller 'Avsluta': ");
             } else {
                 System.out.print("Skriv in val eller 'Avsluta': ");
             }
 
             userInput = scan.nextLine();
-            if (userInput.equalsIgnoreCase("Avsluta")) {
-                booking.setState(BookingState.CANCELED);
+            if (userInput.equalsIgnoreCase("Klar")) {
+                booking.setState(BookingState.COMPLETED);
                 break;
             }
-
-            if (userInput.equalsIgnoreCase("Färdig")) {
-                booking.setState(BookingState.COMPLETED);
+            if (userInput.equalsIgnoreCase("Avsluta")) {
+                booking.setState(BookingState.CANCELED);
                 break;
             }
 
@@ -102,7 +103,8 @@ public class BookingsMenu {
                 }
 
             } else {
-                System.err.println("Det du skrev in motsvarar inte en av sifferalternativen. Försök igen.");
+                System.err.printf("%sDet du skrev in motsvarar inte något av alternativen. Försök igen.%s%n",
+                        red, resetColor);
             }
         }
         printBookingConfirmation();
@@ -127,6 +129,7 @@ public class BookingsMenu {
     }
 
     private void printBookingConfirmation() {
+        Utility.clearScreen();
         if (booking.getState() == BookingState.COMPLETED) {
             System.out.println(yellow + "Du har bokat:" + resetColor);
             booking.showBooking();
@@ -167,7 +170,7 @@ public class BookingsMenu {
                 }
             } while (true);
         } else {
-            String red = "\u001B[31m";
+
             System.out.printf("%sDet finns inte några fler tillgängliga veckor att boka under vald period%s%n"
                     , red, resetColor);
             return true;
@@ -193,10 +196,11 @@ public class BookingsMenu {
 
     private void loadAvailableWeeks() {
         String filePath;
+        //Kommentera ut under demo
         filePath = "src/bookingsMenu/availableWeeks.properties";
 
-        //Kommentera ut vid demo av programmet. Detta möjliggör clear av konsolskärmen
-//        if (util.macUser()) {
+        //Kommentera in vid demo av programmet. Detta möjliggör clear av konsolskärmen
+//        if (Utility.macUser()) {
 //            filePath = System.getProperty("user.dir") + "/bookingsMenu/availableWeeks.properties";
 //        } else {
 //            filePath = System.getProperty("user.dir") + "\\bookingsMenu\\availableWeeks.properties";

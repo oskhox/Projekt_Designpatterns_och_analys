@@ -14,7 +14,15 @@ public class Utility {
     }
 
     public static void clearScreen() {
-        System.out.print("\u001B[H\u001B[2J");
+        try {
+            if (macUser()) {
+                new ProcessBuilder("clear").inheritIO().start().waitFor();
+            } else {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static boolean macUser() {
