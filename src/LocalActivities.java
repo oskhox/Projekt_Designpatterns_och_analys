@@ -118,11 +118,4 @@ public class LocalActivities implements MenuScreen {
         Main main = new Main();
         //main.
     }
-
-    //TODO: Ta bort efter merge, detta är bara mock
-    public static void main(String[] args) {
-        Scanner scanner1 = new Scanner(System.in);
-        LocalActivities l = new LocalActivities(scanner1);
-        l.printMenu();
-    }
 }

@@ -9,8 +9,10 @@ public class Main {
     public Main() {
 
         try (Scanner scan = new Scanner(System.in)) {
-
+            ContactDetails c = new ContactDetails(scan);
             BookingsMenu b = new BookingsMenu(scan);
+            LocalActivities l = new LocalActivities(scan);
+            ActivityStorage activityStorage = new ActivityStorage(scan);
             //printMainMenu();
 
             String line = null;
@@ -29,7 +31,7 @@ public class Main {
                             }
                         }
                         case STORAGE_SCREEN -> {
-                            System.out.println("Storage: 1");
+                            activityStorage.printMenu();
                             state = MainMenuStates.START_SCREEN;
                         }
                         case COTTAGE_SCREEN -> {
@@ -37,11 +39,11 @@ public class Main {
                             state = MainMenuStates.START_SCREEN;
                         }
                         case CONTACT_SCREEN -> {
-                            System.out.println("Contact info: 3");
+//                            c.printMenu();
                             state = MainMenuStates.START_SCREEN;
                         }
                         case ACTIVITY_SCREEN -> {
-                            System.out.println("Activities: 4");
+                            l.printMenu();
                             state = MainMenuStates.START_SCREEN;
                         }
                         case BOOKING_SCREEN -> {

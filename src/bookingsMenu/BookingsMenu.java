@@ -139,13 +139,12 @@ public class BookingsMenu {
         filePath = "src/bookingsMenu/availableWeeks.properties";
 
         //Kommentera ut vid demo av programmet. Detta möjliggör clear av konsolskärmen
-        /*
-        if (util.macUser()) {
-            filePath = System.getProperty("user.dir") + "/bookingsMenu/availableWeeks.properties";
-        } else {
-            filePath = System.getProperty("user.dir") + "\\bookingsMenu\\availableWeeks.properties";
-        }
-         */
+//        if (util.macUser()) {
+//            filePath = System.getProperty("user.dir") + "/bookingsMenu/availableWeeks.properties";
+//        } else {
+//            filePath = System.getProperty("user.dir") + "\\bookingsMenu\\availableWeeks.properties";
+//        }
+
         Properties properties = new Properties();
         String allWeeks;
         String[] parts;
