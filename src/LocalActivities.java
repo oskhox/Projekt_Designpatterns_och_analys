@@ -90,10 +90,14 @@ public class LocalActivities implements MenuScreen {
 
     @Override
     public void printExitInstructions() {
+        System.out.println("Skriv 'Aktivitet' eller 'A' för att välja mellan aktiviteter igen.");
         System.out.println("Skriv 'Exit' eller 'E' för att återgå till huvudmenyn:");
         String exitInput = scanner.nextLine();
         if (exitInput.equalsIgnoreCase("Exit") || exitInput.equalsIgnoreCase("E")) {
             exitClass();
+        }
+        else if (exitInput.equalsIgnoreCase("Aktivitet") || exitInput.equalsIgnoreCase("A")) {
+            printMenu();
         }
     }
 
