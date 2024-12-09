@@ -90,14 +90,22 @@ public class LocalActivities implements MenuScreen {
 
     @Override
     public void printExitInstructions() {
-        System.out.println("Skriv 'Aktiviteter' eller 'A' för att välja mellan aktiviteter igen.");
-        System.out.println("Skriv 'Exit' eller 'E' för att återgå till huvudmenyn:");
-        String exitInput = scanner.nextLine();
-        if (exitInput.equalsIgnoreCase("Exit") || exitInput.equalsIgnoreCase("E")) {
-            exitClass();
-        }
-        else if (exitInput.equalsIgnoreCase("Aktivitet") || exitInput.equalsIgnoreCase("A")) {
-            printMenu();
+        boolean validInput = false;
+
+        while (!validInput) {
+            System.out.println("Skriv 'Aktiviteter' eller 'A' för att välja mellan aktiviteter igen.");
+            System.out.println("Skriv 'Exit' eller 'E' för att återgå till huvudmenyn:");
+            String exitInput = scanner.nextLine();
+
+            if (exitInput.equalsIgnoreCase("Exit") || exitInput.equalsIgnoreCase("E")) {
+                exitClass();
+                validInput = true;
+            } else if (exitInput.equalsIgnoreCase("Aktiviteter") || exitInput.equalsIgnoreCase("A")) {
+                printMenu();
+                validInput = true;
+            } else {
+                System.out.println("Felaktig inmatning, försök igen.");
+            }
         }
     }
 
