@@ -8,52 +8,73 @@ import java.util.*;
 
 public class BookingsMenu {
     private final Scanner scan;
-    private final List<String> availableWeeks = new ArrayList<>();
+    private final List<String> availableSummerWeeks = new ArrayList<>();
+    private final List<String> availableWinterWeeks = new ArrayList<>();
     private final List<String> bookedWeeks = new ArrayList<>();
-    String yellow = "\u001B[33m", green = "\u001B[32m", red = "\u001B[31m", resetColor = "\u001B[0m";
-    Util util = new Util();
-    Booking booking = new Booking();
+    private final String yellow = "\u001B[33m";
+    private final String resetColor = "\u001B[0m";
+    private final Util util = new Util();
+    private final Booking booking = new Booking();
+    private BookingType chosenType;
+
+    enum BookingType {
+        SUMMER, WINTER
+    }
 
     public BookingsMenu(Scanner scan) {
         this.scan = scan;
-    }//private->public för test
+        loadAvailableWeeks();
+    }
 
-    public void printMenu() { //private->public för test
+    public void printMenu() {
+        chooseSeason();
+        if (chosenType == BookingType.SUMMER) {
+            if (!availableSummerWeeks.isEmpty()) {
+                makeBooking(BookingType.SUMMER);
+            } else {
+                System.out.println("Det finns inte några tillgängliga veckor under sommaren att boka");
+            }
+        }
+        else {
+            if (!availableWinterWeeks.isEmpty()) {
+                makeBooking(BookingType.WINTER);
+            } else {
+                System.out.println("Det finns inte några tillgängliga veckor under vintern att boka");
+            }
+        }
+    }
+
+    private void chooseSeason() {
         String userInput;
-        Optional<Integer> parsedUserInput;
         String instruction = String.format("Sommar%nVinter%nSkriv in 'Sommar' eller 'Vinter': ");
-
-        // Denna del är bara en mock up
         while (true) {
             System.out.println(instruction);
             userInput = scan.nextLine().trim();
             if (userInput.equalsIgnoreCase("Vinter")) {
-                loadAvailableWeeks(false);
+                chosenType = BookingType.WINTER;
                 break;
             } else if (userInput.equalsIgnoreCase("Sommar")) {
-                loadAvailableWeeks(true);
+                chosenType = BookingType.SUMMER;
                 break;
             } else {
                 System.err.println("Vad du skrev in motsvarar varken 'Vinter' eller 'Sommar'");
             }
         }
-
-        if (!availableWeeks.isEmpty()) {
-            makeBooking();
-        } else {
-            System.out.println("Det finns inte några tillgängliga veckor att boka");
-        }
     }
 
-    private void makeBooking() {
+    private void makeBooking(BookingType typeOfBooking) {
         String userInput;
         Optional<Integer> parsedUserInput;
         int chosenWeek;
 
-        while (!availableWeeks.isEmpty()) {
+        while (availableWeeks(typeOfBooking)) {
             printInstruction();
-            printAvailableWeeks();
-            System.out.print("Skriv in val eller 'Avsluta': ");
+            printAvailableWeeks(typeOfBooking);
+            if (booking.getState() == BookingState.PENDING) {
+                System.out.print("Skriv in val, 'Färdig' eller 'Avsluta': ");
+            } else {
+                System.out.print("Skriv in val eller 'Avsluta': ");
+            }
 
             userInput = scan.nextLine();
             if (userInput.equalsIgnoreCase("Avsluta")) {
@@ -61,22 +82,21 @@ public class BookingsMenu {
                 break;
             }
 
+            if (userInput.equalsIgnoreCase("Färdig")) {
+                booking.setState(BookingState.COMPLETED);
+                break;
+            }
+
             parsedUserInput = util.parseIfAble(userInput);
             if (parsedUserInput.isPresent()) {
                 chosenWeek = parsedUserInput.get() - 1; // Menyalternativen är 1 större än listindex
-                if (validWeek(chosenWeek)) {
-                    System.out.printf("%s%s är tillagd i din bokning.%s%n",
-                            green, availableWeeks.get(chosenWeek), resetColor);
 
-                    booking.addWeek(availableWeeks.get(chosenWeek));
-                    bookedWeeks.add(availableWeeks.get(chosenWeek));
-                    availableWeeks.remove(chosenWeek);
-
+                if (validWeek(chosenWeek, chosenType)) {
+                    completeBooking(chosenType, chosenWeek);
                     if (booking.getState() == BookingState.EMPTY) {
                         booking.setState(BookingState.PENDING);
                     }
-
-                    if (finishedBooking()) {
+                    if (finishedBooking(chosenType)) {
                         booking.setState(BookingState.COMPLETED);
                         break;
                     }
@@ -89,6 +109,24 @@ public class BookingsMenu {
         printBookingConfirmation();
     }
 
+    private void completeBooking(BookingType chosenType, int chosenWeek) {
+        String green = "\u001B[32m";
+        if (chosenType == BookingType.SUMMER) {
+            System.out.printf("%s%s är tillagd i din bokning.%s%n",
+                    green, availableSummerWeeks.get(chosenWeek), resetColor);
+            booking.addWeek(availableSummerWeeks.get(chosenWeek));
+            bookedWeeks.add(availableSummerWeeks.get(chosenWeek));
+            availableSummerWeeks.remove(chosenWeek);
+        }
+        else {
+            System.out.printf("%s%s är tillagd i din bokning.%s%n",
+                    green, availableWinterWeeks.get(chosenWeek), resetColor);
+            booking.addWeek(availableWinterWeeks.get(chosenWeek));
+            bookedWeeks.add(availableWinterWeeks.get(chosenWeek));
+            availableWinterWeeks.remove(chosenWeek);
+        }
+    }
+
     private void printBookingConfirmation() {
         if (booking.getState() == BookingState.COMPLETED) {
             System.out.println(yellow + "Du har bokat:" + resetColor);
@@ -98,12 +136,24 @@ public class BookingsMenu {
         }
     }
 
-    private boolean validWeek(int chosenWeek) {
-        return chosenWeek < availableWeeks.size() && chosenWeek >= 0;
+    private boolean availableWeeks(BookingType typeOfBooking) {
+        if (typeOfBooking == BookingType.SUMMER) {
+            return !availableSummerWeeks.isEmpty();
+        } else {
+            return !availableWinterWeeks.isEmpty();
+        }
     }
 
-    private boolean finishedBooking() {
-        if (!availableWeeks.isEmpty()) {
+    private boolean validWeek(int chosenWeek, BookingType chosenType) {
+        if (chosenType == BookingType.SUMMER) {
+            return chosenWeek < availableSummerWeeks.size() && chosenWeek >= 0;
+        } else {
+            return chosenWeek < availableWinterWeeks.size() && chosenWeek >= 0;
+        }
+    }
+
+    private boolean finishedBooking(BookingType chosenType) {
+        if (availableWeeks(chosenType)) {
             do {
                 System.out.println("Vill du boka fler veckor? (Ja / Nej)");
                 String input = scan.nextLine();
@@ -118,14 +168,22 @@ public class BookingsMenu {
                 }
             } while (true);
         } else {
-            System.out.printf("%sDet finns inte några fler tillgängliga veckor att boka%s%n", red, resetColor);
+            String red = "\u001B[31m";
+            System.out.printf("%sDet finns inte några fler tillgängliga veckor att boka under vald period%s%n"
+                    , red, resetColor);
             return true;
         }
     }
 
-    private void printAvailableWeeks() {
-        for (int i = 0; i < availableWeeks.size(); i++) {
-            System.out.printf("%d: %s%n", i + 1, availableWeeks.get(i));
+    private void printAvailableWeeks(BookingType chosenType) {
+        if (chosenType == BookingType.SUMMER) {
+            for (int i = 0; i < availableSummerWeeks.size(); i++) {
+                System.out.printf("%d: %s%n", i + 1, availableSummerWeeks.get(i));
+            }
+        } else {
+            for (int i = 0; i < availableWinterWeeks.size(); i++) {
+                System.out.printf("%d: %s%n", i + 1, availableWinterWeeks.get(i));
+            }
         }
     }
 
@@ -134,7 +192,7 @@ public class BookingsMenu {
         System.out.println(yellow + instruction + resetColor);
     }
 
-    private void loadAvailableWeeks(boolean summerWeeks) {
+    private void loadAvailableWeeks() {
         String filePath;
         filePath = "src/bookingsMenu/availableWeeks.properties";
 
@@ -146,19 +204,22 @@ public class BookingsMenu {
 //        }
 
         Properties properties = new Properties();
-        String allWeeks;
+        String summerWeeks, winterWeeks;
         String[] parts;
         try (FileInputStream inputStream = new FileInputStream(filePath)) {
             properties.load(inputStream);
-            if (summerWeeks) {
-                allWeeks = properties.getProperty("available_summer_weeks");
-            } else {
-                allWeeks = properties.getProperty("available_winter_weeks");
-            }
-            if (allWeeks != null) {
-                parts = allWeeks.split(",");
+            summerWeeks = properties.getProperty("available_summer_weeks");
+            winterWeeks = properties.getProperty("available_winter_weeks");
+            if (summerWeeks != null) {
+                parts = summerWeeks.split(",");
                 for (String week : parts) {
-                    availableWeeks.add(week.trim());
+                    availableSummerWeeks.add(week.trim());
+                }
+            }
+            if (winterWeeks != null) {
+                parts = winterWeeks.split(",");
+                for (String week : parts) {
+                    availableWinterWeeks.add(week.trim());
                 }
             }
         } catch (IOException e) {
@@ -172,3 +233,4 @@ public class BookingsMenu {
         b.printMenu();
     }
 }
+
