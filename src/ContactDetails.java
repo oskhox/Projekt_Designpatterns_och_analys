@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class ContactDetails {
+public class ContactDetails implements MenuScreen{
 
     Scanner scanner;
 
@@ -19,6 +19,7 @@ public class ContactDetails {
 
     }
 
+    @Override
     public void printMenu() {
     }
 
