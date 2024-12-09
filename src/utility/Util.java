@@ -6,7 +6,7 @@ public class Util {
     public Optional<Integer> parseIfAble(String toParse) {
         try {
             int result;
-            result = Integer.parseInt(toParse);
+            result = Integer.parseInt(toParse.trim());
             return Optional.of(result);
         } catch (NumberFormatException e) {
             return Optional.empty();
