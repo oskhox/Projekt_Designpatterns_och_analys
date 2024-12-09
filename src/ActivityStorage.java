@@ -66,7 +66,7 @@ public class ActivityStorage implements MenuScreen {
             }
 
             if (userInput == 1 || userInput == 2 || userInput == 3) {
-                exitInstructions();
+                printExitInstructions();
 
             }
         }
@@ -89,11 +89,12 @@ public class ActivityStorage implements MenuScreen {
             return userChoiceInput;
         }
 
-    public void exitInstructions() {
+    @Override
+    public void printExitInstructions() {
         System.out.println("(4) Tillbaka till huvudmenyn");
     }
 
-
+    @Override
     public void exitClass() {
     }
 
