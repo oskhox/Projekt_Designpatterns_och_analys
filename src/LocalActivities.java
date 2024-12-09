@@ -97,13 +97,15 @@ public class LocalActivities implements MenuScreen {
         }
     }
 
+    //TODO: Rensa terminalen och anropa Main igen
+    //Skriver 50 tomma rader och anropar Main
     @Override
     public void exitClass() {
-        //TODO: Cleara terminalen
-        //TODO: Skriv ut huvudmenyn igen, anropa Main
-        //System.out.print("\u001B[H\u001B[2J");
-        System.out.println("Här ska terminalen clearas och huvudmenyn skrivas ut igen.");
-        System.exit(0); //Ta bort
+        for (int i = 0; i < 50; i++) {
+            System.out.println();
+        }
+        Main main = new Main();
+        //main.
     }
 
     //TODO: Ta bort efter merge, detta är bara mock
