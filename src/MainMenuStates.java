@@ -4,7 +4,8 @@ public enum MainMenuStates {
     COTTAGE_SCREEN("2"),
     CONTACT_SCREEN("3"),
     ACTIVITY_SCREEN("4"),
-    BOOKING_SCREEN("5");
+    BOOKING_SCREEN("5"),
+    EXIT("6");
 
     final String stateValue;
 

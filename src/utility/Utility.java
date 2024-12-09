@@ -2,8 +2,8 @@ package utility;
 
 import java.util.Optional;
 
-public class Util {
-    public Optional<Integer> parseIfAble(String toParse) {
+public class Utility {
+    public static Optional<Integer> parseIfAble(String toParse) {
         try {
             int result;
             result = Integer.parseInt(toParse.trim());
@@ -13,11 +13,11 @@ public class Util {
         }
     }
 
-    public void clearScreen() {
+    public static void clearScreen() {
         System.out.print("\u001B[H\u001B[2J");
     }
 
-    public boolean macUser() {
+    public static boolean macUser() {
         String os = System.getProperty("os.name").toLowerCase();
         return os.contains("mac");
     }

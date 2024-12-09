@@ -1,6 +1,6 @@
 package bookingsMenu;
 
-import utility.Util;
+import utility.Utility;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -13,7 +13,6 @@ public class BookingsMenu {
     private final List<String> bookedWeeks = new ArrayList<>();
     private final String yellow = "\u001B[33m";
     private final String resetColor = "\u001B[0m";
-    private final Util util = new Util();
     private final Booking booking = new Booking();
     private BookingType chosenType;
 
@@ -87,7 +86,7 @@ public class BookingsMenu {
                 break;
             }
 
-            parsedUserInput = util.parseIfAble(userInput);
+            parsedUserInput = Utility.parseIfAble(userInput);
             if (parsedUserInput.isPresent()) {
                 chosenWeek = parsedUserInput.get() - 1; // Menyalternativen är 1 större än listindex
 
@@ -158,10 +157,10 @@ public class BookingsMenu {
                 System.out.println("Vill du boka fler veckor? (Ja / Nej)");
                 String input = scan.nextLine();
                 if (input.equalsIgnoreCase("Ja") || input.equalsIgnoreCase("J")) {
-                    util.clearScreen();
+                    Utility.clearScreen();
                     return false;
                 } else if (input.equalsIgnoreCase("Nej") || input.equalsIgnoreCase("N")) {
-                    util.clearScreen();
+                    Utility.clearScreen();
                     return true;
                 } else {
                     System.out.println("Vad du skrev in motsvarar varken 'Ja' eller 'Nej'");
