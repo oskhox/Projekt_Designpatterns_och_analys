@@ -14,11 +14,11 @@ public class BookingsMenu {
     Util util = new Util();
     Booking booking = new Booking();
 
-    BookingsMenu(Scanner scan) {
+    public BookingsMenu(Scanner scan) {
         this.scan = scan;
-    }
+    }//private->public för test
 
-    private void printMenu() {
+    public void printMenu() { //private->public för test
         String userInput;
         Optional<Integer> parsedUserInput;
         String instruction = String.format("Sommar%nVinter%nSkriv in 'Sommar' eller 'Vinter': ");

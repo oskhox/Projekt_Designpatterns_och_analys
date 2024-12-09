@@ -1,4 +1,65 @@
+import bookingsMenu.*;
+
+import java.util.Scanner;
+
 public class Main {
 
-    //hejhejhej
+    MainMenuStates state = MainMenuStates.START_SCREEN;
+
+    public Main() {
+
+        try (Scanner scan = new Scanner(System.in)) {
+
+            BookingsMenu b = new BookingsMenu(scan);
+            //printMainMenu();
+
+            String line = null;
+            while (((line != null)||state.equals(MainMenuStates.START_SCREEN))) {
+
+                    switch (state) {
+                        case START_SCREEN -> {
+                            printMainMenu();
+                            while (state.equals(MainMenuStates.START_SCREEN)) {
+                                line = scan.nextLine();
+                                for (MainMenuStates chosenState : MainMenuStates.values()) {
+                                    if (chosenState.stateValue.equals(line.trim())) {
+                                        state = chosenState;
+                                    }
+                                }
+                            }
+                        }
+                        case STORAGE_SCREEN -> {
+                            System.out.println("Storage: 1");
+                            state = MainMenuStates.START_SCREEN;
+                        }
+                        case COTTAGE_SCREEN -> {
+                            System.out.println("Cottage: 2");
+                            state = MainMenuStates.START_SCREEN;
+                        }
+                        case CONTACT_SCREEN -> {
+                            System.out.println("Contact info: 3");
+                            state = MainMenuStates.START_SCREEN;
+                        }
+                        case ACTIVITY_SCREEN -> {
+                            System.out.println("Activities: 4");
+                            state = MainMenuStates.START_SCREEN;
+                        }
+                        case BOOKING_SCREEN -> {
+                            b.printMenu();
+                            state = MainMenuStates.START_SCREEN;
+                        }
+                    }
+                }
+        }
+    }
+
+    public void printMainMenu(){
+        System.out.println("\nSkriv in numret bredvid menynamnet för att välja meny:" +
+                            "\nStorage[1], Cottage[2], Contact info[3], Activities[4], Booking[5]");
+    }
+
+    public static void main (String[]args){
+        new Main();
+    }
 }
+
