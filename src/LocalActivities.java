@@ -44,12 +44,11 @@ public class LocalActivities implements MenuScreen {
         menuSelection();
     }
 
-    //Lyssnar på inmatning av 1, 2 eller 3
     public void menuSelection() {
         boolean listenForInput = true;
 
         while (listenForInput) {
-            int userInput = getUserInput();
+            int userInput = checkUserInput();
 
             switch (userInput) {
                 case 1:
@@ -72,7 +71,7 @@ public class LocalActivities implements MenuScreen {
         }
     }
 
-    public int getUserInput() {
+    public int checkUserInput() {
         int userChoiceInput = 0;
 
         try {
