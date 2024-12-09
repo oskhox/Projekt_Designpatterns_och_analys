@@ -44,6 +44,7 @@ public class LocalActivities implements MenuScreen {
         menuSelection();
     }
 
+    //Lyssnar på inmatning av 1, 2 eller 3
     public void menuSelection() {
         boolean listenForInput = true;
 
