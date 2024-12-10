@@ -6,13 +6,13 @@ import utility.Utility;
 public class CompletedBookingState implements BookingState {
     @Override
     public void handle(BookingsMenu context) {
-        addBookings(context);
+        addWeeksToBooking(context);
         printBooking(context);
         context.getBooking().setPending(false);
         context.setCurrentState(null);
     }
 
-    private void addBookings(BookingsMenu context) {
+    private void addWeeksToBooking(BookingsMenu context) {
         for (String week : context.getPendingBookings()) {
             context.getBooking().addWeek(week);
         }
