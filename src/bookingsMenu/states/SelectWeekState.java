@@ -38,7 +38,7 @@ public class SelectWeekState implements BookingState {
                 chosenWeek = parsedUserInput.get() - 1; // Menyalternativen är 1 större än listindex
 
                 if (context.validWeek(chosenWeek)) {
-                    context.addBooking(chosenWeek);
+                    context.addBookingToPending(chosenWeek);
                     if (!context.getBooking().isPending()) {
                         context.getBooking().setPending(true);
                     }

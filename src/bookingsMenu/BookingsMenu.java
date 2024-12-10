@@ -15,10 +15,10 @@ public class BookingsMenu implements menus.MenuScreen {
     private final Scanner scan;
     private BookingType bookingType;
     private BookingState currentState;
-    private Booking booking = new Booking();
+    private final Booking booking = new Booking();
+    private ArrayList<String> pendingBookings = new ArrayList<>();
     private final ArrayList<String> availableSummerWeeks = new ArrayList<>();
     private final ArrayList<String> availableWinterWeeks = new ArrayList<>();
-    private final ArrayList<String> bookedWeeks = new ArrayList<>();
 
     public BookingsMenu(Scanner scan) {
         this.scan = scan;
@@ -30,6 +30,7 @@ public class BookingsMenu implements menus.MenuScreen {
         while (currentState != null) {
             currentState.handle(this);
         }
+        pendingBookings = new ArrayList<>();
         currentState = new ChooseSeasonState(scan);
     }
 
@@ -39,6 +40,10 @@ public class BookingsMenu implements menus.MenuScreen {
 
     public void setBookingType(BookingType bookingType) {
         this.bookingType = bookingType;
+    }
+
+    public ArrayList<String> getPendingBookings() {
+        return pendingBookings;
     }
 
     public List<String> getAvailableSummerWeeks() {
@@ -57,20 +62,18 @@ public class BookingsMenu implements menus.MenuScreen {
         return booking;
     }
 
-    public void addBooking(int chosenWeek) {
+    public void addBookingToPending(int chosenWeek) {
         String green = "\u001B[32m";
         String resetColor = "\u001B[0m";
         if (bookingType == BookingType.SUMMER) {
             System.out.printf("%s%s är tillagd i din bokning.%s%n",
                     green, availableSummerWeeks.get(chosenWeek), resetColor);
-            booking.addWeek(availableSummerWeeks.get(chosenWeek));
-            bookedWeeks.add(availableSummerWeeks.get(chosenWeek));
+            pendingBookings.add(availableSummerWeeks.get(chosenWeek));
             availableSummerWeeks.remove(chosenWeek);
         } else {
             System.out.printf("%s%s är tillagd i din bokning.%s%n",
                     green, availableWinterWeeks.get(chosenWeek), resetColor);
-            booking.addWeek(availableWinterWeeks.get(chosenWeek));
-            bookedWeeks.add(availableWinterWeeks.get(chosenWeek));
+            pendingBookings.add(availableWinterWeeks.get(chosenWeek));
             availableWinterWeeks.remove(chosenWeek);
         }
     }
