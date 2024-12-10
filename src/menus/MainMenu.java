@@ -1,6 +1,6 @@
-package Menus;
+package menus;
 
-import Menus.CottageDetails.CottageDetails;
+import menus.CottageDetails.CottageDetails;
 import bookingsMenu.BookingsMenu;
 import utility.Utility;
 
@@ -40,23 +40,16 @@ public class MainMenu {
         System.out.print("Enter choice: ");
     }
 
-    public List<menus.MenuScreen> creatMenuScreens(Scanner scan) {
+    public List<MenuScreen> creatMenuScreens(Scanner scan) {
 
-        List<menus.MenuScreen> menuScreens = new ArrayList<>();
-        menuScreens.add(new menus.ActivityStorage(scan));
-        menuScreens.add(new menus.ContactDetails(scan));
         List<MenuScreen> menuScreens = new ArrayList<>();
         menuScreens.add(new ActivityStorage(scan));
-        menuScreens.add(new CottageDetails("src/Menus/CottageDetails/cottage_description.txt"));
+        menuScreens.add(new CottageDetails(scan));
         menuScreens.add(new ContactDetails(scan));
         menuScreens.add(new LocalActivities(scan));
         menuScreens.add(new BookingsMenu(scan));
         menuScreens.add(()-> System.exit(0));
         return menuScreens;
-    }
-
-    public static void main(String[] args) {
-        new MainMenuPrototyp();
     }
 }
 
