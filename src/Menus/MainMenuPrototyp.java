@@ -1,5 +1,6 @@
 package Menus;
 
+import Menus.CottageDetails.CottageDetails;
 import bookingsMenu.BookingsMenu;
 
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ public class MainMenuPrototyp {
 
         List<MenuScreen> menuScreens = new ArrayList<>();
         menuScreens.add(new ActivityStorage(scan));
-        menuScreens.add(new ContactDetails(scan));
+        menuScreens.add(new CottageDetails("src/Menus/CottageDetails/cottage_description.txt"));
         menuScreens.add(new ContactDetails(scan));
         menuScreens.add(new LocalActivities(scan));
         menuScreens.add(new BookingsMenu(scan));
