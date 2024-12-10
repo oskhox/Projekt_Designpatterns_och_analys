@@ -1,3 +1,5 @@
+package Menus;
+
 import java.util.Scanner;
 
 public class ActivityStorage implements MenuScreen {
@@ -60,9 +62,10 @@ public class ActivityStorage implements MenuScreen {
                     System.out.println(winterStorage + "\n" + summerStorage);
                     break;
                 case 4:
-                    running = false;
+                    return;
+                    //running = false;
                     //tillbaka till huvudmenyn
-                    break;
+                    //break;
             }
 
             if (userInput == 1 || userInput == 2 || userInput == 3) {
@@ -89,7 +92,6 @@ public class ActivityStorage implements MenuScreen {
         return userChoiceInput;
     }
 
-    @Override
     public void printExitInstructions() {
 
         boolean validInput = false;
@@ -102,6 +104,7 @@ public class ActivityStorage implements MenuScreen {
             if (exitInput.equalsIgnoreCase("Exit") || exitInput.equalsIgnoreCase("E")) {
                 //vad istället för exitclass?
                 validInput = true;
+                return;
             } else if (exitInput.equalsIgnoreCase("Förråd") || exitInput.equalsIgnoreCase("F")) {
                 printMenu();
                 validInput = true;

@@ -99,8 +99,9 @@ public class LocalActivities implements MenuScreen {
             String exitInput = scanner.nextLine();
 
             if (exitInput.equalsIgnoreCase("Exit") || exitInput.equalsIgnoreCase("E")) {
-                exitClass();
-                validInput = true;
+                return;
+                //exitClass();
+                //validInput = true;
             } else if (exitInput.equalsIgnoreCase("Aktiviteter") || exitInput.equalsIgnoreCase("A")) {
                 printMenu();
                 validInput = true;
@@ -108,16 +109,5 @@ public class LocalActivities implements MenuScreen {
                 System.out.println("Felaktig inmatning, försök igen.");
             }
         }
-    }
-
-    //TODO: Rensa terminalen och anropa Menus.Main igen
-    //Skriver 50 tomma rader och anropar Menus.Main
-
-    public void exitClass() {
-        for (int i = 0; i < 50; i++) {
-            System.out.println();
-        }
-        MainMenuPrototyp main = new MainMenuPrototyp();
-        //main.
     }
 }

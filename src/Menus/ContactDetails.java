@@ -19,12 +19,12 @@ public class ContactDetails implements MenuScreen {
 
     public ContactDetails(Scanner scanner) {
         this.scanner = scanner;
-        System.out.println(contactDetails);
     }
 
     @Override
     public void printMenu() {
 
+        System.out.println(contactDetails);
         String menuTitle = String.format(
                 "För önskat val --> skriv motsvarande siffra %n" +
                         "(2) Tillbaka till huvudmenyn");
@@ -55,24 +55,5 @@ public class ContactDetails implements MenuScreen {
 
         }
         return userChoiceInput;
-    }
-
-    //blir överflödig
-    @Override
-    public void printExitInstructions() {
-        boolean validInput = false;
-
-        while (!validInput) {
-            System.out.println("Skriv 'Exit' eller 'E' för att återgå till huvudmenyn:");
-            String exitInput = scanner.nextLine();
-
-            if (exitInput.equalsIgnoreCase("Exit") || exitInput.equalsIgnoreCase("E")) {
-                //vad istället för exitclass?
-                validInput = true;
-            } else {
-                System.out.println("Felaktig inmatning, försök igen.");
-            }
-
-        }
     }
 }
