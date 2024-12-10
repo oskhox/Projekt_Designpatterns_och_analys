@@ -104,9 +104,9 @@ public class LocalActivities implements MenuScreen {
             System.out.println("Skriv 'Exit' eller 'E' för att återgå till huvudmenyn:");
             String exitInput = scanner.nextLine();
 
-            if (exitInput.equalsIgnoreCase("Exit") || exitInput.equalsIgnoreCase("E")) {
+            if (exitInput.trim().equalsIgnoreCase("Exit") || exitInput.trim().equalsIgnoreCase("E")) {
                 return;
-            } else if (exitInput.equalsIgnoreCase("Aktiviteter") || exitInput.equalsIgnoreCase("A")) {
+            } else if (exitInput.trim().equalsIgnoreCase("Aktiviteter") || exitInput.trim().equalsIgnoreCase("A")) {
                 runMenu();
                 validInput = true;
             } else {
