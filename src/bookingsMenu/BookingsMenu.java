@@ -2,6 +2,7 @@ package bookingsMenu;
 
 import bookingsMenu.states.BookingState;
 import bookingsMenu.states.ChooseSeasonState;
+import utility.Utility;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Scanner;
 
-public class BookingsMenu implements Menus.MenuScreen {
+public class BookingsMenu implements menus.MenuScreen {
     private final Scanner scan;
     private BookingType bookingType;
     private BookingState currentState;
@@ -105,17 +106,17 @@ public class BookingsMenu implements Menus.MenuScreen {
     private void loadAvailableWeeks() {
         String filePath;
         //Kommentera ut under demo
-        filePath = "src/bookingsMenu/availableWeeks.properties";
+//        filePath = "src/bookingsMenu/availableWeeks.properties";
 
         //Ta bort senare, bara för Victor
 //        filePath = "C:\\Javaprogram\\OOP\\stugan\\src\\bookingsMenu\\availableWeeks.properties";
 
         //Kommentera in vid demo av programmet. Detta möjliggör clear av konsolskärmen
-//        if (Utility.macUser()) {
-//            filePath = System.getProperty("user.dir") + "/bookingsMenu/availableWeeks.properties";
-//        } else {
-//            filePath = System.getProperty("user.dir") + "\\bookingsMenu\\availableWeeks.properties";
-//        }
+        if (Utility.macUser()) {
+            filePath = System.getProperty("user.dir") + "/bookingsMenu/availableWeeks.properties";
+        } else {
+            filePath = System.getProperty("user.dir") + "\\bookingsMenu\\availableWeeks.properties";
+        }
 
         Properties properties = new Properties();
         String summerWeeks, winterWeeks;

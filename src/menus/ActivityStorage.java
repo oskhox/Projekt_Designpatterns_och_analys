@@ -1,4 +1,4 @@
-package Menus;
+package menus;
 
 import utility.Utility;
 
@@ -8,16 +8,16 @@ public class ActivityStorage implements MenuScreen {
 
     private final Scanner scanner;
 
-    private String winterStorage = """
+    private final String winterStorage = """
             == Vinterförråd ==
              Skidor
              Pulka
              Pimpeltrustning
              Bastutält
              Snöskyffel
-             """;
+            """;
 
-    private String summerStorage = """
+    private final String summerStorage = """
             == Sommarförråd ==
             Fotboll
             Gångstavar
@@ -30,18 +30,16 @@ public class ActivityStorage implements MenuScreen {
         this.scanner = scanner;
     }
 
-
     @Override
     public void runMenu() {
-       // Utility.clearScreen();
+        Utility.clearScreen();
         String menuTitel = String.format(
-                "För önskat val --> skriv motsvarande siffra %n" +
-                        "(1) Vinterförråd%n" +
-                        "(2) Sommarförråd%n" +
-                        "(3) Åretruntförråd%n" +
-                        "(4) Tillbaka till huvudmenyn");
-
+                "(1) Vinterförråd%n" +
+                "(2) Sommarförråd%n" +
+                "(3) Åretruntförråd%n" +
+                "(4) Tillbaka till huvudmenyn");
         System.out.println(menuTitel);
+        System.out.print("Skriv in motsvarande sifferalternativ: ");
         menuSelection();
     }
 
@@ -52,28 +50,27 @@ public class ActivityStorage implements MenuScreen {
 
         while (listenForInput) {
             int userInput = checkUserInput();
-           // Utility.clearScreen();
-
             switch (userInput) {
                 case 1:
+                    Utility.clearScreen();
                     System.out.println(winterStorage);
                     listenForInput = false;
                     break;
                 case 2:
+                    Utility.clearScreen();
                     System.out.println(summerStorage);
                     listenForInput = false;
                     break;
                 case 3:
+                    Utility.clearScreen();
                     System.out.println(winterStorage + "\n" + summerStorage);
                     listenForInput = false;
                     break;
                 case 4:
                     return;
             }
-
             if (userInput == 1 || userInput == 2 || userInput == 3) {
                 printExitInstructions();
-
             }
         }
     }
@@ -105,9 +102,10 @@ public class ActivityStorage implements MenuScreen {
             String exitInput = scanner.nextLine();
 
             if (exitInput.equalsIgnoreCase("Exit") || exitInput.equalsIgnoreCase("E")) {
+                Utility.clearScreen();
                 return;
             } else if (exitInput.equalsIgnoreCase("Förråd") || exitInput.equalsIgnoreCase("F")) {
-               // Utility.clearScreen();
+                // Utility.clearScreen();
                 this.runMenu();
                 validInput = true;
             } else {

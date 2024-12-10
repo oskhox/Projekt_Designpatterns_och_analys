@@ -1,4 +1,4 @@
-package Menus;
+package menus;
 
 public interface MenuScreen {
     void runMenu();

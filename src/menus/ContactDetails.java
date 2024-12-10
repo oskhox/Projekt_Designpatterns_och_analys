@@ -1,4 +1,6 @@
-package Menus;
+package menus;
+
+import utility.Utility;
 
 import java.util.Scanner;
 
@@ -23,7 +25,7 @@ public class ContactDetails implements MenuScreen {
 
     @Override
     public void runMenu() {
-
+        Utility.clearScreen();
         System.out.println(contactDetails);
         String menuTitle = String.format(
                 "För önskat val --> skriv motsvarande siffra %n" +
@@ -38,6 +40,7 @@ public class ContactDetails implements MenuScreen {
         while(true) {
             int userInput = checkUserInput();
             if (userInput == 2) {
+                Utility.clearScreen();
                 return;
             }
         }

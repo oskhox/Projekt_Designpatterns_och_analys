@@ -1,4 +1,4 @@
-package Menus;
+package menus;
 
 public class CottageDetails implements MenuScreen {
     @Override

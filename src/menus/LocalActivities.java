@@ -1,4 +1,6 @@
-package Menus;
+package menus;
+
+import utility.Utility;
 
 import java.util.Scanner;
 
@@ -36,6 +38,7 @@ public class LocalActivities implements MenuScreen {
     //Anropas från main
     @Override
     public void runMenu() {
+        Utility.clearScreen();
         String menu = String.format(
                 "För önskat val --> skriv motsvarande siffra %n" +
                         "(1) Året runt-aktiviteter%n" +
@@ -54,14 +57,17 @@ public class LocalActivities implements MenuScreen {
 
             switch (userInput) {
                 case 1:
+                    Utility.clearScreen();
                     System.out.println(yearRoundActivities);
                     listenForInput = false;
                     break;
                 case 2:
+                    Utility.clearScreen();
                     System.out.println(winterActivities);
                     listenForInput = false;
                     break;
                 case 3:
+                    Utility.clearScreen();
                     System.out.println(summerActivities);
                     listenForInput = false;
                     break;
@@ -99,9 +105,8 @@ public class LocalActivities implements MenuScreen {
             String exitInput = scanner.nextLine();
 
             if (exitInput.equalsIgnoreCase("Exit") || exitInput.equalsIgnoreCase("E")) {
+                Utility.clearScreen();
                 return;
-                //exitClass();
-                //validInput = true;
             } else if (exitInput.equalsIgnoreCase("Aktiviteter") || exitInput.equalsIgnoreCase("A")) {
                 runMenu();
                 validInput = true;
