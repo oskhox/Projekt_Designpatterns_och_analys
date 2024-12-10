@@ -30,7 +30,7 @@ public class ActivityStorage implements MenuScreen {
 
 
     @Override
-    public void printMenu() {
+    public void runMenu() {
 
         String menuTitel = String.format(
                 "För önskat val --> skriv motsvarande siffra %n" +
@@ -40,11 +40,11 @@ public class ActivityStorage implements MenuScreen {
                         "(4) Tillbaka till huvudmenyn");
 
         System.out.println(menuTitel);
-        runMenu();
+        menuSelection();
     }
 
 
-    public void runMenu() {
+    public void menuSelection() {
 
         boolean running = true;
 
@@ -106,7 +106,7 @@ public class ActivityStorage implements MenuScreen {
                 validInput = true;
                 return;
             } else if (exitInput.equalsIgnoreCase("Förråd") || exitInput.equalsIgnoreCase("F")) {
-                printMenu();
+                this.runMenu();
                 validInput = true;
             } else {
                 System.out.println("Felaktig inmatning, försök igen.");

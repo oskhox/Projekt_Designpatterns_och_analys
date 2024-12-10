@@ -22,7 +22,7 @@ public class ContactDetails implements MenuScreen {
     }
 
     @Override
-    public void printMenu() {
+    public void runMenu() {
 
         System.out.println(contactDetails);
         String menuTitle = String.format(
@@ -30,10 +30,10 @@ public class ContactDetails implements MenuScreen {
                         "(2) Tillbaka till huvudmenyn");
 
         System.out.println(menuTitle);
-        runMenu();
+        MenuSelection();
     }
 
-    public void runMenu() {
+    public void MenuSelection() {
             int userInput = checkUserInput();
             if (userInput == 2) {
                 //tillbaka till huvudmenyn

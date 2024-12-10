@@ -28,7 +28,7 @@ public class BookingsMenu implements MenuScreen {
         loadAvailableWeeks();
     }
 
-    public void printMenu() {
+    public void runMenu() {
         chooseSeason();
         if (chosenType == BookingType.SUMMER) {
             if (!availableSummerWeeks.isEmpty()) {
@@ -235,7 +235,7 @@ public class BookingsMenu implements MenuScreen {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         BookingsMenu b = new BookingsMenu(scan);
-        b.printMenu();
+        b.runMenu();
     }
 }
 

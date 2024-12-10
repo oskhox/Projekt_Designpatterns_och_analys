@@ -2,7 +2,6 @@ package Menus;
 
 import bookingsMenu.BookingsMenu;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -17,7 +16,7 @@ public class MainMenuPrototyp {
             String line;
             while ((line = scan.nextLine()) !=null) {
                 try {
-                    menuScreens.get(Integer.parseInt(line)-1).printMenu(); //-1 Så att den stämmer med mainMenuOptions.
+                    menuScreens.get(Integer.parseInt(line)-1).runMenu(); //-1 Så att den stämmer med mainMenuOptions.
                     mainMenuOptions();
                 }catch (Exception e) {
                     System.out.println("Felaktig inmatning, försök igen.");
