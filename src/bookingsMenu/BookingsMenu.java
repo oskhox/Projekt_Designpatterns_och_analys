@@ -36,11 +36,6 @@ public class BookingsMenu implements Menus.MenuScreen {
         this.currentState = chosenState;
     }
 
-    private void makeBooking(BookingType typeOfBooking) {
-        String userInput;
-        Optional<Integer> parsedUserInput;
-        int chosenWeek;
-
     public void setBookingType(BookingType bookingType) {
         this.bookingType = bookingType;
     }
@@ -70,8 +65,7 @@ public class BookingsMenu implements Menus.MenuScreen {
             booking.addWeek(availableSummerWeeks.get(chosenWeek));
             bookedWeeks.add(availableSummerWeeks.get(chosenWeek));
             availableSummerWeeks.remove(chosenWeek);
-        }
-        else {
+        } else {
             System.out.printf("%s%s är tillagd i din bokning.%s%n",
                     green, availableWinterWeeks.get(chosenWeek), resetColor);
             booking.addWeek(availableWinterWeeks.get(chosenWeek));
@@ -146,6 +140,6 @@ public class BookingsMenu implements Menus.MenuScreen {
             System.err.printf("Unable to open file: %s%n", filePath);
         }
     }
-
 }
+
 
