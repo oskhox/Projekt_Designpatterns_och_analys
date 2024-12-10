@@ -2,7 +2,7 @@ package Menus;
 
 import java.util.Scanner;
 
-public class ContactDetails implements MenuScreen{
+public class ContactDetails implements MenuScreen {
 
     Scanner scanner;
 

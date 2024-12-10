@@ -23,7 +23,7 @@ public class BookingsMenu implements Menus.MenuScreen {
         currentState = new ChooseSeasonState(scan);
     }
 
-    public void runMenu() {
+    public void printMenu() {
         while (currentState != null) {
             currentState.handle(this);
         }
@@ -103,8 +103,10 @@ public class BookingsMenu implements Menus.MenuScreen {
     private void loadAvailableWeeks() {
         String filePath;
         //Kommentera ut under demo
-        filePath = "C:\\Javaprogram\\OOP\\stugan\\src\\bookingsMenu\\availableWeeks.properties";
-//        filePath = "src/bookingsMenu/availableWeeks.properties";
+        filePath = "src/bookingsMenu/availableWeeks.properties";
+
+        //Ta bort senare, bara för Victor
+//        filePath = "C:\\Javaprogram\\OOP\\stugan\\src\\bookingsMenu\\availableWeeks.properties";
 
         //Kommentera in vid demo av programmet. Detta möjliggör clear av konsolskärmen
 //        if (Utility.macUser()) {

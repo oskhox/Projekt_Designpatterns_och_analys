@@ -2,7 +2,6 @@ package Menus;
 
 import bookingsMenu.BookingsMenu;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -12,7 +11,7 @@ public class MainMenuPrototyp {
     public MainMenuPrototyp() {
 
         try (Scanner scan = new Scanner(System.in)) {
-            List<MenuScreen> menuScreens = creatMenuScreens(scan);
+            List<Menus.MenuScreen> menuScreens = creatMenuScreens(scan);
             mainMenuOptions();
             String line;
             while ((line = scan.nextLine()) !=null) {
@@ -37,11 +36,11 @@ public class MainMenuPrototyp {
                 """);
     }
 
-    public List<MenuScreen> creatMenuScreens(Scanner scan) {
+    public List<Menus.MenuScreen> creatMenuScreens(Scanner scan) {
 
-        List<MenuScreen> menuScreens = new ArrayList<>();
-        menuScreens.add(new ActivityStorage(scan));
-        menuScreens.add(new ContactDetails(scan));
+        List<Menus.MenuScreen> menuScreens = new ArrayList<>();
+        menuScreens.add(new Menus.ActivityStorage(scan));
+        menuScreens.add(new Menus.ContactDetails(scan));
         menuScreens.add(new ContactDetails(scan));
         menuScreens.add(new LocalActivities(scan));
         menuScreens.add(new BookingsMenu(scan));
