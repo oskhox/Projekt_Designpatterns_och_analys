@@ -7,7 +7,7 @@ import java.util.Optional;
 import java.util.Scanner;
 
 public class SelectWeekState implements BookingState {
-    private Scanner scan;
+    private final Scanner scan;
 
     SelectWeekState(Scanner scan) {
         this.scan = scan;
