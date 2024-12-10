@@ -5,22 +5,22 @@ public class ActivityStorage implements MenuScreen {
     private final Scanner scanner;
 
     private String winterStorage = """
-   == Vinterförråd ==
-    Skidor
-    Pulka
-    Pimpeltrustning
-    Bastutält
-    Snöskyffel
-    """;
+            == Vinterförråd ==
+             Skidor
+             Pulka
+             Pimpeltrustning
+             Bastutält
+             Snöskyffel
+             """;
 
     private String summerStorage = """
-    == Sommarförråd ==
-    Fotboll
-    Gångstavar
-    Kubb
-    Boule
-    Fiskeutrustning
-    """;
+            == Sommarförråd ==
+            Fotboll
+            Gångstavar
+            Kubb
+            Boule
+            Fiskeutrustning
+            """;
 
     ActivityStorage(Scanner scanner) {
         this.scanner = scanner;
@@ -61,7 +61,7 @@ public class ActivityStorage implements MenuScreen {
                     break;
                 case 4:
                     running = false;
-                    //tillbaka till huvuddmeny
+                    //tillbaka till huvudmenyn
                     break;
             }
 
@@ -76,33 +76,39 @@ public class ActivityStorage implements MenuScreen {
 
         int userChoiceInput = 0;
 
-            try {
-                userChoiceInput = Integer.parseInt(scanner.nextLine().trim());
+        try {
+            userChoiceInput = Integer.parseInt(scanner.nextLine().trim());
 
-                if (userChoiceInput < 1 || userChoiceInput > 4) {
-                    System.out.println("Felaktig inmatning --> Ange en giltig siffra");
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("Felaktig inmatning --> Endast siffror kan anges vid val, försök igen! ");
-
+            if (userChoiceInput < 1 || userChoiceInput > 4) {
+                System.out.println("Felaktig inmatning --> Ange en giltig siffra");
             }
-            return userChoiceInput;
+        } catch (NumberFormatException e) {
+            System.out.println("Felaktig inmatning --> Endast siffror kan anges vid val, försök igen! ");
+
         }
+        return userChoiceInput;
+    }
 
     @Override
     public void printExitInstructions() {
-        System.out.println("(4) Tillbaka till huvudmenyn");
+
+        boolean validInput = false;
+
+        while (!validInput) {
+            System.out.println("Skriv 'Förråd' eller 'F' för att välja mellan olika aktivitetsförråd igen.");
+            System.out.println("Skriv 'Exit' eller 'E' för att återgå till huvudmenyn:");
+            String exitInput = scanner.nextLine();
+
+            if (exitInput.equalsIgnoreCase("Exit") || exitInput.equalsIgnoreCase("E")) {
+                //vad istället för exitclass?
+                validInput = true;
+            } else if (exitInput.equalsIgnoreCase("Förråd") || exitInput.equalsIgnoreCase("F")) {
+                printMenu();
+                validInput = true;
+            } else {
+                System.out.println("Felaktig inmatning, försök igen.");
+            }
+        }
     }
-
-    @Override
-    public void exitClass() {
-    }
-
-
-    /*
-    public void clearConsole() {
-        System.out.print("\u001B[H\u001B[2J");
-    }
-    */
-
 }
+
