@@ -30,10 +30,10 @@ public class ContactDetails implements MenuScreen {
                         "(2) Tillbaka till huvudmenyn");
 
         System.out.println(menuTitle);
-        MenuSelection();
+        menuSelection();
     }
 
-    public void MenuSelection() {
+    public void menuSelection() {
 
         while(true) {
             int userInput = checkUserInput();
