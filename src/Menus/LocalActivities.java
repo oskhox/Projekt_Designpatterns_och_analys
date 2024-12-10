@@ -1,3 +1,5 @@
+package Menus;
+
 import java.util.Scanner;
 
 public class LocalActivities implements MenuScreen {
@@ -87,7 +89,7 @@ public class LocalActivities implements MenuScreen {
         return userChoiceInput;
     }
 
-    @Override
+
     public void printExitInstructions() {
         boolean validInput = false;
 
@@ -108,9 +110,9 @@ public class LocalActivities implements MenuScreen {
         }
     }
 
-    //TODO: Rensa terminalen och anropa Main igen
-    //Skriver 50 tomma rader och anropar Main
-    @Override
+    //TODO: Rensa terminalen och anropa Menus.Main igen
+    //Skriver 50 tomma rader och anropar Menus.Main
+
     public void exitClass() {
         for (int i = 0; i < 50; i++) {
             System.out.println();

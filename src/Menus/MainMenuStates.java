@@ -1,3 +1,5 @@
+package Menus;
+
 public enum MainMenuStates {
     START_SCREEN("0"),
     STORAGE_SCREEN("1"),

@@ -1,3 +1,5 @@
+package Menus;
+
 import bookingsMenu.*;
 import utility.Utility;
 
@@ -14,7 +16,7 @@ public class Main {
             BookingsMenu b = new BookingsMenu(scan);
             LocalActivities l = new LocalActivities(scan);
             ActivityStorage activityStorage = new ActivityStorage(scan);
-            //printMainMenu();
+            //printMenu();
 
             String line = null;
             while (((line != null) || state.equals(MainMenuStates.START_SCREEN))) {

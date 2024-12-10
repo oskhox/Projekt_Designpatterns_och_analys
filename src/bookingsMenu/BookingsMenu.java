@@ -1,12 +1,14 @@
 package bookingsMenu;
 
+import Menus.MenuScreen;
 import utility.Utility;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.*;
+import java.util.List;
 
-public class BookingsMenu {
+public class BookingsMenu implements MenuScreen {
     private final Scanner scan;
     private final List<String> availableSummerWeeks = new ArrayList<>();
     private final List<String> availableWinterWeeks = new ArrayList<>();

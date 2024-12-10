@@ -1,3 +1,5 @@
+package Menus;
+
 import java.util.Scanner;
 
 public class ActivityStorage implements MenuScreen {
@@ -89,12 +91,12 @@ public class ActivityStorage implements MenuScreen {
             return userChoiceInput;
         }
 
-    @Override
+
     public void printExitInstructions() {
         System.out.println("(4) Tillbaka till huvudmenyn");
     }
 
-    @Override
+
     public void exitClass() {
     }
 
