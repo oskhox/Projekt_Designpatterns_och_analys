@@ -35,7 +35,7 @@ public class LocalActivities implements MenuScreen {
 
     //Anropas från main
     @Override
-    public void printMenu() {
+    public void runMenu() {
         String menu = String.format(
                 "För önskat val --> skriv motsvarande siffra %n" +
                         "(1) Året runt-aktiviteter%n" +
@@ -99,25 +99,15 @@ public class LocalActivities implements MenuScreen {
             String exitInput = scanner.nextLine();
 
             if (exitInput.equalsIgnoreCase("Exit") || exitInput.equalsIgnoreCase("E")) {
-                exitClass();
-                validInput = true;
+                return;
+                //exitClass();
+                //validInput = true;
             } else if (exitInput.equalsIgnoreCase("Aktiviteter") || exitInput.equalsIgnoreCase("A")) {
-                printMenu();
+                runMenu();
                 validInput = true;
             } else {
                 System.out.println("Felaktig inmatning, försök igen.");
             }
         }
-    }
-
-    //TODO: Rensa terminalen och anropa Menus.Main igen
-    //Skriver 50 tomma rader och anropar Menus.Main
-
-    public void exitClass() {
-        for (int i = 0; i < 50; i++) {
-            System.out.println();
-        }
-        Main main = new Main();
-        //main.
     }
 }

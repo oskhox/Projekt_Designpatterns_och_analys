@@ -9,7 +9,8 @@ public class ContactDetails implements MenuScreen {
     private String contactDetails = """
             === Kontaktuppgifter ===
             Stugan
-            Företagsadress:
+            Företagsadress: 
+            Hemsida: https://stugan-myrsjo.se
             Telefontider: 8-20
             Tele-nummer: 0700000000 
             Email: stugan@hotmail.com
@@ -18,17 +19,44 @@ public class ContactDetails implements MenuScreen {
 
     public ContactDetails(Scanner scanner) {
         this.scanner = scanner;
-
     }
 
     @Override
-    public void printMenu() {
+    public void runMenu() {
+
+        System.out.println(contactDetails);
+        String menuTitle = String.format(
+                "För önskat val --> skriv motsvarande siffra %n" +
+                        "(2) Tillbaka till huvudmenyn");
+
+        System.out.println(menuTitle);
+        menuSelection();
     }
 
-    public void printExitInstructions() {
+    public void menuSelection() {
+
+        while(true) {
+            int userInput = checkUserInput();
+            if (userInput == 2) {
+                return;
+            }
+        }
     }
 
-    public void exitClass() {
-    }
 
+    public int checkUserInput() {
+        int userChoiceInput = 0;
+
+        try {
+            userChoiceInput = Integer.parseInt(scanner.nextLine().trim());
+
+            if (userChoiceInput != 2) {
+                System.out.println("Felaktig inmatning --> Ange en giltig siffra");
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Felaktig inmatning --> Endast siffror kan anges vid val, försök igen! ");
+
+        }
+        return userChoiceInput;
+    }
 }

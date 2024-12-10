@@ -25,7 +25,7 @@ public class BookingsMenu implements Menus.MenuScreen {
         currentState = new ChooseSeasonState(scan);
     }
 
-    public void printMenu() {
+    public void runMenu() {
         while (currentState != null) {
             currentState.handle(this);
         }
@@ -35,6 +35,11 @@ public class BookingsMenu implements Menus.MenuScreen {
     public void setCurrentState(BookingState chosenState) {
         this.currentState = chosenState;
     }
+
+    private void makeBooking(BookingType typeOfBooking) {
+        String userInput;
+        Optional<Integer> parsedUserInput;
+        int chosenWeek;
 
     public void setBookingType(BookingType bookingType) {
         this.bookingType = bookingType;
@@ -143,3 +148,4 @@ public class BookingsMenu implements Menus.MenuScreen {
     }
 
 }
+
