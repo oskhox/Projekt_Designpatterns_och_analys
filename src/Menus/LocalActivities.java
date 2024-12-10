@@ -69,7 +69,7 @@ public class LocalActivities implements MenuScreen {
                     listenForInput = false;
                     break;
                 case 4:
-                    Utility.clearScreen(); //ger 'TERM'-fel i intelliJ
+                    Utility.clearScreen(); //ger 'TERM'-fel intelliJ
                     return;
             }
 
