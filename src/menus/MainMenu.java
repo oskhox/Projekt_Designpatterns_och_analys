@@ -1,5 +1,6 @@
-package menus;
+package Menus;
 
+import Menus.CottageDetails.CottageDetails;
 import bookingsMenu.BookingsMenu;
 import utility.Utility;
 
@@ -44,11 +45,18 @@ public class MainMenu {
         List<menus.MenuScreen> menuScreens = new ArrayList<>();
         menuScreens.add(new menus.ActivityStorage(scan));
         menuScreens.add(new menus.ContactDetails(scan));
+        List<MenuScreen> menuScreens = new ArrayList<>();
+        menuScreens.add(new ActivityStorage(scan));
+        menuScreens.add(new CottageDetails("src/Menus/CottageDetails/cottage_description.txt"));
         menuScreens.add(new ContactDetails(scan));
         menuScreens.add(new LocalActivities(scan));
         menuScreens.add(new BookingsMenu(scan));
         menuScreens.add(()-> System.exit(0));
         return menuScreens;
+    }
+
+    public static void main(String[] args) {
+        new MainMenuPrototyp();
     }
 }
 
