@@ -11,14 +11,16 @@ import java.util.Properties;
 import java.util.Scanner;
 
 public class BookingsMenu implements Menus.MenuScreen {
+    private final Scanner scan;
     private BookingType bookingType;
     private BookingState currentState;
-    private final Booking booking = new Booking();
-    private final List<String> availableSummerWeeks = new ArrayList<>();
-    private final List<String> availableWinterWeeks = new ArrayList<>();
-    private final List<String> bookedWeeks = new ArrayList<>();
+    private Booking booking = new Booking();
+    private final ArrayList<String> availableSummerWeeks = new ArrayList<>();
+    private final ArrayList<String> availableWinterWeeks = new ArrayList<>();
+    private final ArrayList<String> bookedWeeks = new ArrayList<>();
 
     public BookingsMenu(Scanner scan) {
+        this.scan = scan;
         loadAvailableWeeks();
         currentState = new ChooseSeasonState(scan);
     }
@@ -27,6 +29,7 @@ public class BookingsMenu implements Menus.MenuScreen {
         while (currentState != null) {
             currentState.handle(this);
         }
+        currentState = new ChooseSeasonState(scan);
     }
 
     public void setCurrentState(BookingState chosenState) {
