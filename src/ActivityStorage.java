@@ -30,19 +30,19 @@ public class ActivityStorage implements MenuScreen {
     @Override
     public void printMenu() {
 
-        String menu = String.format(
+        String menuTitel = String.format(
                 "För önskat val --> skriv motsvarande siffra %n" +
                         "(1) Vinterförråd%n" +
                         "(2) Sommarförråd%n" +
                         "(3) Åretruntförråd%n" +
                         "(4) Tillbaka till huvudmenyn");
 
-        System.out.println(menu);
-        menuSelection();
+        System.out.println(menuTitel);
+        runMenu();
     }
 
 
-    public void menuSelection() {
+    public void runMenu() {
 
         boolean running = true;
 
