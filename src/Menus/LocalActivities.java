@@ -1,5 +1,7 @@
 package Menus;
 
+import utility.Utility;
+
 import java.util.Scanner;
 
 public class LocalActivities implements MenuScreen {
@@ -40,7 +42,8 @@ public class LocalActivities implements MenuScreen {
                 "För önskat val --> skriv motsvarande siffra %n" +
                         "(1) Året runt-aktiviteter%n" +
                         "(2) Vinteraktiviteter%n" +
-                        "(3) Sommaraktiviteter");
+                        "(3) Sommaraktiviteter%n" +
+                        "(4) Tillbaka till huvudmenyn");
 
         System.out.println(menu);
         menuSelection();
@@ -65,6 +68,9 @@ public class LocalActivities implements MenuScreen {
                     System.out.println(summerActivities);
                     listenForInput = false;
                     break;
+                case 4:
+                    Utility.clearScreen(); //ger 'TERM'-fel i intelliJ
+                    return;
             }
 
             if (userInput == 1 || userInput == 2 || userInput == 3) {
@@ -79,7 +85,7 @@ public class LocalActivities implements MenuScreen {
         try {
             userChoiceInput = Integer.parseInt(scanner.nextLine());
 
-            if (userChoiceInput < 1 || userChoiceInput > 3) {
+            if (userChoiceInput < 1 || userChoiceInput > 4) {
                 System.out.println("Felaktig inmatning --> Ange ett giltig nummer");
             }
 
@@ -100,8 +106,6 @@ public class LocalActivities implements MenuScreen {
 
             if (exitInput.equalsIgnoreCase("Exit") || exitInput.equalsIgnoreCase("E")) {
                 return;
-                //exitClass();
-                //validInput = true;
             } else if (exitInput.equalsIgnoreCase("Aktiviteter") || exitInput.equalsIgnoreCase("A")) {
                 runMenu();
                 validInput = true;
