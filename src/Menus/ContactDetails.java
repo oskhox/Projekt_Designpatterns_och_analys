@@ -34,11 +34,14 @@ public class ContactDetails implements MenuScreen {
     }
 
     public void MenuSelection() {
+
+        while(true) {
             int userInput = checkUserInput();
             if (userInput == 2) {
-                //tillbaka till huvudmenyn
+                return;
             }
         }
+    }
 
 
     public int checkUserInput() {

@@ -1,5 +1,7 @@
 package Menus;
 
+import utility.Utility;
+
 import java.util.Scanner;
 
 public class ActivityStorage implements MenuScreen {
@@ -31,7 +33,7 @@ public class ActivityStorage implements MenuScreen {
 
     @Override
     public void runMenu() {
-
+       // Utility.clearScreen();
         String menuTitel = String.format(
                 "För önskat val --> skriv motsvarande siffra %n" +
                         "(1) Vinterförråd%n" +
@@ -50,6 +52,7 @@ public class ActivityStorage implements MenuScreen {
 
         while (listenForInput) {
             int userInput = checkUserInput();
+           // Utility.clearScreen();
 
             switch (userInput) {
                 case 1:
@@ -104,6 +107,7 @@ public class ActivityStorage implements MenuScreen {
             if (exitInput.equalsIgnoreCase("Exit") || exitInput.equalsIgnoreCase("E")) {
                 return;
             } else if (exitInput.equalsIgnoreCase("Förråd") || exitInput.equalsIgnoreCase("F")) {
+               // Utility.clearScreen();
                 this.runMenu();
                 validInput = true;
             } else {
