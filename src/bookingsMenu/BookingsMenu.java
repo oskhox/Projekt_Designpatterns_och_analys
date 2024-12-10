@@ -71,13 +71,9 @@ public class BookingsMenu implements MenuScreen {
 
         Utility.clearScreen();
         while (availableWeeks(typeOfBooking)) {
-            printInstruction();
+            printInstructionHeader();
             printAvailableWeeks(typeOfBooking);
-            if (booking.getState() == BookingState.PENDING) {
-                System.out.print("Skriv in val, 'Klar' eller 'Avsluta': ");
-            } else {
-                System.out.print("Skriv in val eller 'Avsluta': ");
-            }
+            printInstructionFooter();
 
             userInput = scan.nextLine();
             if (userInput.equalsIgnoreCase("Klar")) {
@@ -112,6 +108,53 @@ public class BookingsMenu implements MenuScreen {
         printBookingConfirmation();
     }
 
+    private void printInstructionHeader() {
+        String instruction = "Vänligen skriv in motsvarande siffra för den vecka du vill boka.";
+        System.out.println(yellow + instruction + resetColor);
+    }
+
+    private void printInstructionFooter() {
+        if (booking.getState() == BookingState.PENDING) {
+            System.out.print("Skriv in val, 'Klar' eller 'Avsluta': ");
+        } else {
+            System.out.print("Skriv in val eller 'Avsluta': ");
+        }
+    }
+
+    private void printBookingConfirmation() {
+        Utility.clearScreen();
+        if (booking.getState() == BookingState.COMPLETED) {
+            System.out.println(yellow + "Du har bokat:" + resetColor);
+            booking.showBooking();
+        } else if (booking.getState() == BookingState.CANCELED) {
+            System.out.println("Bokning avbruten.");
+        }
+    }
+
+    private void printAvailableWeeks(BookingType chosenType) {
+        if (chosenType == BookingType.SUMMER) {
+            for (int i = 0; i < availableSummerWeeks.size(); i++) {
+                System.out.printf("%d: %s%n", i + 1, availableSummerWeeks.get(i));
+            }
+        } else {
+            for (int i = 0; i < availableWinterWeeks.size(); i++) {
+                System.out.printf("%d: %s%n", i + 1, availableWinterWeeks.get(i));
+            }
+        }
+    }
+
+    private boolean availableWeeks(BookingType typeOfBooking) {
+        if (typeOfBooking == BookingType.SUMMER) {
+            return !availableSummerWeeks.isEmpty();
+        } else {
+            return !availableWinterWeeks.isEmpty();
+        }
+    }
+
+    private void handleInput() {
+
+    }
+
     private void completeBooking(BookingType chosenType, int chosenWeek) {
         String green = "\u001B[32m";
         if (chosenType == BookingType.SUMMER) {
@@ -127,24 +170,6 @@ public class BookingsMenu implements MenuScreen {
             booking.addWeek(availableWinterWeeks.get(chosenWeek));
             bookedWeeks.add(availableWinterWeeks.get(chosenWeek));
             availableWinterWeeks.remove(chosenWeek);
-        }
-    }
-
-    private void printBookingConfirmation() {
-        Utility.clearScreen();
-        if (booking.getState() == BookingState.COMPLETED) {
-            System.out.println(yellow + "Du har bokat:" + resetColor);
-            booking.showBooking();
-        } else if (booking.getState() == BookingState.CANCELED) {
-            System.out.println("Bokning avbruten.");
-        }
-    }
-
-    private boolean availableWeeks(BookingType typeOfBooking) {
-        if (typeOfBooking == BookingType.SUMMER) {
-            return !availableSummerWeeks.isEmpty();
-        } else {
-            return !availableWinterWeeks.isEmpty();
         }
     }
 
@@ -179,22 +204,9 @@ public class BookingsMenu implements MenuScreen {
         }
     }
 
-    private void printAvailableWeeks(BookingType chosenType) {
-        if (chosenType == BookingType.SUMMER) {
-            for (int i = 0; i < availableSummerWeeks.size(); i++) {
-                System.out.printf("%d: %s%n", i + 1, availableSummerWeeks.get(i));
-            }
-        } else {
-            for (int i = 0; i < availableWinterWeeks.size(); i++) {
-                System.out.printf("%d: %s%n", i + 1, availableWinterWeeks.get(i));
-            }
-        }
-    }
 
-    private void printInstruction() {
-        String instruction = "Vänligen skriv in motsvarande siffra för den vecka du vill boka.";
-        System.out.println(yellow + instruction + resetColor);
-    }
+
+
 
     private void loadAvailableWeeks() {
         String filePath;
