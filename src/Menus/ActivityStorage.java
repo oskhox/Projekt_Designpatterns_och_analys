@@ -46,26 +46,26 @@ public class ActivityStorage implements MenuScreen {
 
     public void menuSelection() {
 
-        boolean running = true;
+        boolean listenForInput = true;
 
-        while (running) {
-            int userInput = getUserInput();
+        while (listenForInput) {
+            int userInput = checkUserInput();
 
             switch (userInput) {
                 case 1:
                     System.out.println(winterStorage);
+                    listenForInput = false;
                     break;
                 case 2:
                     System.out.println(summerStorage);
+                    listenForInput = false;
                     break;
                 case 3:
                     System.out.println(winterStorage + "\n" + summerStorage);
+                    listenForInput = false;
                     break;
                 case 4:
                     return;
-                    //running = false;
-                    //tillbaka till huvudmenyn
-                    //break;
             }
 
             if (userInput == 1 || userInput == 2 || userInput == 3) {
@@ -75,7 +75,7 @@ public class ActivityStorage implements MenuScreen {
         }
     }
 
-    public int getUserInput() {
+    public int checkUserInput() {
 
         int userChoiceInput = 0;
 
@@ -102,8 +102,6 @@ public class ActivityStorage implements MenuScreen {
             String exitInput = scanner.nextLine();
 
             if (exitInput.equalsIgnoreCase("Exit") || exitInput.equalsIgnoreCase("E")) {
-                //vad istället för exitclass?
-                validInput = true;
                 return;
             } else if (exitInput.equalsIgnoreCase("Förråd") || exitInput.equalsIgnoreCase("F")) {
                 this.runMenu();
