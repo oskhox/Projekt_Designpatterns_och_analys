@@ -6,19 +6,19 @@ import java.util.List;
 
 public class Booking {
     private final List<String> bookedWeeks = new ArrayList<>();
-    private BookingState state = BookingState.EMPTY;
+    private boolean pending = false;
 
     public void addWeek(String week) {
         bookedWeeks.add(week);
         Collections.sort(bookedWeeks);
     }
 
-    public BookingState getState() {
-        return this.state;
+    public boolean isPending() {
+        return pending;
     }
 
-    public void setState(BookingState state) {
-        this.state = state;
+    public void setPending(boolean choice) {
+        pending = choice;
     }
 
     public void showBooking() {
