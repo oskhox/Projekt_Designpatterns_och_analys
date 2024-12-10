@@ -117,7 +117,7 @@ public class LocalActivities implements MenuScreen {
         for (int i = 0; i < 50; i++) {
             System.out.println();
         }
-        Main main = new Main();
+        MainMenuPrototyp main = new MainMenuPrototyp();
         //main.
     }
 }
