@@ -13,7 +13,7 @@ public class MainMenu {
     public MainMenu() {
         Utility.clearScreen();
         try (Scanner scan = new Scanner(System.in)) {
-            List<menus.MenuScreen> menuScreens = creatMenuScreens(scan);
+            List<menus.MenuScreen> menuScreens = createMenuScreens(scan);
             mainMenuOptions();
             String line;
             while ((line = scan.nextLine()) !=null) {
@@ -38,7 +38,7 @@ public class MainMenu {
         System.out.print("Skriv in motsvarande sifferalternativ: ");
     }
 
-    public List<MenuScreen> creatMenuScreens(Scanner scan) {
+    public List<MenuScreen> createMenuScreens(Scanner scan) {
         MenuFactory factory = new MenuFactory();
         List<MenuScreen> menuScreens = new ArrayList<>();
         for (MenuType type : MenuType.values()) {
