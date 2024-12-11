@@ -19,7 +19,7 @@ public class CottageDetails implements MenuScreen {
         String filePath = "src/Menus/CottageDetails/cottage_description.txt";
         //Detta är bara vid demo. Kommentera in vid tillfälle
         if (Utility.macUser()) {
-            filePath = System.getProperty("user.dir") + "/Menus/CottageDetails/cottage_description.txt";
+            filePath = System.getProperty("user.dir") + "/menus/CottageDetails/cottage_description.txt";
         } else {
             filePath = System.getProperty("user.dir") + "\\Menus\\CottageDetails\\cottage_description.txt";
 

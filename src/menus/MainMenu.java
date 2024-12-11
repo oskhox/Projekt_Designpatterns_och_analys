@@ -30,17 +30,18 @@ public class MainMenu {
 
     public void mainMenuOptions(){
         System.out.print("""
-                [1] Storage
-                [2] Cottage
-                [3] Contact info
-                [4] Activities
-                [5] Booking
-                [6] Exit
+                Välkommen till Stugan på Rödmyravägen 5 i Järvsö
+                [1] Information om aktivitetsförråd
+                [2] Stuginformation
+                [3] Kontaktuppgifter
+                [4] Aktiviteter i området
+                [5] Boka stugan
+                [6] Avsluta
                 """);
-        System.out.print("Enter choice: ");
+        System.out.print("Skriv in ditt val: ");
     }
 
-    public List<MenuScreen> creatMenuScreens(Scanner scan) {
+    public List<menus.MenuScreen> creatMenuScreens(Scanner scan) {
 
         List<MenuScreen> menuScreens = new ArrayList<>();
         menuScreens.add(new ActivityStorage(scan));
