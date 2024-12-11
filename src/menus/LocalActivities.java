@@ -31,7 +31,7 @@ public class LocalActivities implements MenuScreen {
             """;
 
     //Tar in scannern från main
-    LocalActivities(Scanner scanner) {
+    public LocalActivities(Scanner scanner) {
         this.scanner = scanner;
     }
 

@@ -1,7 +1,7 @@
 package menus;
 
-import menus.CottageDetails.CottageDetails;
-import bookingsMenu.BookingsMenu;
+import factory.MenuFactory;
+import factory.MenuType;
 import utility.Utility;
 
 import java.util.ArrayList;
@@ -41,14 +41,11 @@ public class MainMenu {
     }
 
     public List<MenuScreen> creatMenuScreens(Scanner scan) {
-
+        MenuFactory factory = new MenuFactory();
         List<MenuScreen> menuScreens = new ArrayList<>();
-        menuScreens.add(new ActivityStorage(scan));
-        menuScreens.add(new CottageDetails(scan));
-        menuScreens.add(new ContactDetails(scan));
-        menuScreens.add(new LocalActivities(scan));
-        menuScreens.add(new BookingsMenu(scan));
-        menuScreens.add(()-> System.exit(0));
+        for (MenuType type : MenuType.values()) {
+            menuScreens.add(factory.getMenu(type, scan));
+        }
         return menuScreens;
     }
 }

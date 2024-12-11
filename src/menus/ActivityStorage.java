@@ -26,7 +26,7 @@ public class ActivityStorage implements MenuScreen {
             Fiskeutrustning
             """;
 
-    ActivityStorage(Scanner scanner) {
+    public ActivityStorage(Scanner scanner) {
         this.scanner = scanner;
     }
 
