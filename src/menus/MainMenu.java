@@ -29,15 +29,13 @@ public class MainMenu {
     }
 
     public void mainMenuOptions(){
-        System.out.print("""
-                [1] Storage
-                [2] Cottage
-                [3] Contact info
-                [4] Activities
-                [5] Booking
-                [6] Exit
-                """);
-        System.out.print("Enter choice: ");
+        int lastOption = 0;
+        for (int i = 0; i < MenuType.values().length; i++) {
+            System.out.printf("[%d] %s %n", i + 1, MenuType.values()[i].getMenuTitle());
+            lastOption = i + 2;
+        }
+        System.out.printf("[%d] Avsluta %n", lastOption);
+        System.out.print("Skriv in motsvarande sifferalternativ: ");
     }
 
     public List<MenuScreen> creatMenuScreens(Scanner scan) {
@@ -46,6 +44,7 @@ public class MainMenu {
         for (MenuType type : MenuType.values()) {
             menuScreens.add(factory.getMenu(type, scan));
         }
+        menuScreens.add(() -> System.exit(0));
         return menuScreens;
     }
 }
