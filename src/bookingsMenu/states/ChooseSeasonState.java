@@ -33,6 +33,7 @@ public class ChooseSeasonState implements BookingState {
         }
         checkAvailableWeeks(context);
     }
+
     private void checkAvailableWeeks(BookingsMenu context) {
         if (context.getBookingType() == BookingType.SUMMER) {
             if (!context.getAvailableSummerWeeks().isEmpty()) {
