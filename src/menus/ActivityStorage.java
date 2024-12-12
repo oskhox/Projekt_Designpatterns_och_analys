@@ -1,7 +1,5 @@
 package menus;
 
-import utility.Utility;
-
 import java.util.Scanner;
 
 public class ActivityStorage extends SeasonOption implements MenuScreen {

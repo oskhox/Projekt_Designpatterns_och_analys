@@ -1,7 +1,5 @@
 package menus;
 
-import utility.Utility;
-
 import java.util.Scanner;
 
 public class LocalActivities extends SeasonOption implements MenuScreen {
