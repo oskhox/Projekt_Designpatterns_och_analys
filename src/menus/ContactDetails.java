@@ -11,10 +11,10 @@ public class ContactDetails implements MenuScreen {
     private String contactDetails = """
             === Kontaktuppgifter ===
             Stugan
-            Företagsadress: 
+            Företagsadress: Rödmyravägen 5, Järvsö
             Hemsida: https://stugan-myrsjo.se
             Telefontider: 8-20
-            Tele-nummer: 0700000000 
+            Tele-nummer: 0700000000
             Email: stugan@hotmail.com
             """;
 

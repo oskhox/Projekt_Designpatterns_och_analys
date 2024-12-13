@@ -86,7 +86,7 @@ public abstract class SeasonOption {
         String firstLetter = menuName.substring(0,1).toUpperCase();
 
         while (!validInput) {
-            System.out.printf("Skriv '%s' eller '%s' för att välja mellan %s igen.\n", menuName, firstLetter, menuName.toLowerCase());
+            System.out.printf("Skriv '%s' eller '%s' för att välja mellan %s igen.\\n", menuName, firstLetter, menuName.toLowerCase());
             System.out.println("Skriv 'Exit' eller 'E' för att återgå till huvudmenyn:");
             String exitInput = scanner.nextLine();
 
