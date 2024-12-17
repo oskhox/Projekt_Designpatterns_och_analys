@@ -16,7 +16,7 @@ public class ChooseSeasonState implements BookingState {
     @Override
     public void handle(BookingsMenu context) {
         String userInput;
-        String instruction = String.format("Sommar%nVinter%nSkriv in 'Sommar' eller 'Vinter': ");
+        String instruction = String.format("Bokning%nSommar%nVinter%nSkriv in 'Sommar' eller 'Vinter': ");
         Utility.clearScreen();
         while (true) {
             System.out.println(instruction);
@@ -28,6 +28,7 @@ public class ChooseSeasonState implements BookingState {
                 context.setBookingType(BookingType.SUMMER);
                 break;
             } else {
+                Utility.clearScreen();
                 System.err.println("Vad du skrev in motsvarar varken 'Vinter' eller 'Sommar'");
             }
         }

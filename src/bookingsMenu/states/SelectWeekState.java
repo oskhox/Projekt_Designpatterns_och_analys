@@ -48,6 +48,7 @@ public class SelectWeekState implements BookingState {
                     }
                 }
             } else {
+                Utility.clearScreen();
                 System.err.println("Det du skrev in motsvarar inte något av alternativen. Försök igen.");
             }
         }

@@ -22,6 +22,7 @@ public class MainMenu {
                     mainMenuOptions();
                 }catch (Exception e) {
                     Utility.clearScreen();
+                    mainMenuOptions();
                     System.err.println("Felaktig inmatning, försök igen.");
                 }
             }
@@ -38,7 +39,7 @@ public class MainMenu {
                 [5] Boka stugan
                 [6] Avsluta
                 """);
-        System.out.print("Skriv in ditt val: ");
+        System.out.println("Skriv in ditt val: ");
     }
 
     public List<menus.MenuScreen> creatMenuScreens(Scanner scan) {

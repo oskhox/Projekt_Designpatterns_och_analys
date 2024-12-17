@@ -36,6 +36,7 @@ public class CottageDetails implements MenuScreen {
 
     @Override
     public void runMenu() {
+        Utility.clearScreen();
         readFromFile();
         System.out.println("\n\"Skriv 'Exit' eller 'E' för att återgå till huvudmenyn:\" ");
 
