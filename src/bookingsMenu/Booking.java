@@ -25,5 +25,6 @@ public class Booking {
         for (String week : bookedWeeks) {
             System.out.println(week);
         }
-    }
+        //System.out.println("Pris: " + (bookedWeeks.size()*1500)+" kr"); ifall man vill att priset ska visat, men det är
+    }   //                                                                hårdkodat in i metoden.
 }
