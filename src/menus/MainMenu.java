@@ -1,6 +1,7 @@
 package menus;
 
 import menus.CottageDetails.CottageDetails;
+import menus.PriceInformation.PriceInformation;
 import bookingsMenu.BookingsMenu;
 import utility.Utility;
 
@@ -37,7 +38,8 @@ public class MainMenu {
                 [3] Kontaktuppgifter
                 [4] Aktiviteter i området
                 [5] Boka stugan
-                [6] Avsluta
+                [6] Prisinformation
+                [7] Avsluta
                 """);
         System.out.println("Skriv in ditt val: ");
     }
@@ -50,6 +52,7 @@ public class MainMenu {
         menuScreens.add(new ContactDetails(scan));
         menuScreens.add(new LocalActivities(scan));
         menuScreens.add(new BookingsMenu(scan));
+        menuScreens.add(new PriceInformation(scan));
         menuScreens.add(()-> System.exit(0));
         return menuScreens;
     }
